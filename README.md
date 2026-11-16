@@ -39,32 +39,3 @@
 | **3** | **API Concept** | **5** | ข้อละ 2.5 คะแนน: ประเมินจากความถูกต้อง, ครบถ้วน, และความเข้าใจในเหตุผลที่อธิบาย |
 | **4** | **REST API (Django)** | **8** | ประเมินจากความครบถ้วนของ Requirement, โครงสร้างโค้ด, การใช้งาน Serializer/Filter, และ Best Practices |
 | | **รวมทั้งหมด** | **20** | |
-
----
-
-## How to run (Part 4)
-
-Requires Python 3.10 (see `.python-version`).
-
-```bash
-python -m venv .venv
-# Windows: .venv\Scripts\activate    macOS/Linux: source .venv/bin/activate
-pip install -r 4_rest_api/requirements.txt
-
-cd 4_rest_api
-python manage.py migrate
-python manage.py createsuperuser   # every endpoint requires login
-python manage.py runserver
-```
-
-- Log in at http://127.0.0.1:8000/admin/, then browse http://127.0.0.1:8000/api/v1/
-- Or call the API with Basic auth, e.g. `curl -u <user>:<password> "http://127.0.0.1:8000/api/v1/teachers/?school=1"`
-- Run tests: `python manage.py test apis`
-- Part 1: `python 1_logic_test/<folder>/main.py` from the repo root
-
-| Resource | Endpoint | Filters |
-| :--- | :--- | :--- |
-| School | `/api/v1/schools/` | `name` |
-| Classroom | `/api/v1/classrooms/` | `school` |
-| Teacher | `/api/v1/teachers/` | `school`, `classroom`, `first_name`, `last_name`, `gender` |
-| Student | `/api/v1/students/` | `school`, `classroom`, `first_name`, `last_name`, `gender` |
